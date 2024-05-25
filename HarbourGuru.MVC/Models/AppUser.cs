@@ -7,8 +7,10 @@ namespace HarbourGuru.MVC.Models
     {
         [Required]
         public DateTime AddedTime { get; set; } = DateTime.UtcNow;
+
         public DateTime? LastHarbourCardAdded { get; set; }
         public DateTime? LastHarbourCardReviewAdded { get; set; }
+
         public ICollection<HarbourCardReview> Reviews { get; set; } = new List<HarbourCardReview>();
     }
 }

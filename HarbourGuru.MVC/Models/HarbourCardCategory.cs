@@ -6,6 +6,7 @@ namespace HarbourGuru.MVC.Models
     {
         [Key]
         public int HarbourCardCategoryId { get; set; }
+
         [Required]
         public string HarbourCardCategoryName { get; set; }
     }
