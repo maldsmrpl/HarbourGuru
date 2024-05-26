@@ -1,0 +1,54 @@
+﻿@model HarbourGuru.MVC.Models.Country
+
+@{
+    ViewData["Title"] = "Edit Country";
+}
+
+<h1>Edit Country</h1>
+
+<h4>Country</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="CountryId" />
+            <div class="form-group">
+                <label asp-for="CountryCodeA2" class="control-label"></label>
+                <input asp-for="CountryCodeA2" class="form-control" />
+                <span asp-validation-for="CountryCodeA2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryCodeA3" class="control-label"></label>
+                <input asp-for="CountryCodeA3" class="form-control" />
+                <span asp-validation-for="CountryCodeA3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryFlagSmall" class="control-label"></label>
+                <input asp-for="CountryFlagSmall" class="form-control" />
+                <span asp-validation-for="CountryFlagSmall" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryFlagLarge" class="control-label"></label>
+                <input asp-for="CountryFlagLarge" class="form-control" />
+                <span asp-validation-for="CountryFlagLarge" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryName" class="control-label"></label>
+                <input asp-for="CountryName" class="form-control" />
+                <span asp-validation-for="CountryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryFullName" class="control-label"></label>
+                <input asp-for="CountryFullName" class="form-control" />
+                <span asp-validation-for="CountryFullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

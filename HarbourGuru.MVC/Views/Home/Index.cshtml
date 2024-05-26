@@ -5,6 +5,12 @@
     ViewData["Title"] = "Welcome";
 }
 
+<h2>Countries</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
 <br />
 <table class="table table-hover">
     <thead>
@@ -14,6 +20,7 @@
             <th scope="col">Country Code (<i><small>ISO 3166-1 alpha-2</small></i>)</th>
             <th scope="col">Country Code (<i><small>ISO 3166-1 alpha-3</small></i>)</th>
             <th scope="col">Country Full Name</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -21,10 +28,18 @@
         {
             <tr>
                 <th scope="row"><img src="@country.CountryFlagSmall" alt="Flag" style="border: 1px solid grey; padding: 0px;" /></th>
-                <td>@country.CountryName</td>
+                <td>
+                    <a asp-controller="Harbour" asp-action="Index" asp-route-countryCodeA2="@country.CountryCodeA2">
+                        @country.CountryName
+                    </a>
+                </td>
                 <td>@country.CountryCodeA2</td>
                 <td>@country.CountryCodeA3</td>
                 <td>@country.CountryFullName</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@country.CountryId" class="btn btn-sm btn-warning">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@country.CountryId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
             </tr>
         }
     </tbody>

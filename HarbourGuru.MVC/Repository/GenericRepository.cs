@@ -43,9 +43,17 @@ namespace HarbourGuru.MVC.Repository
             }
         }
 
-        public virtual TEntity GetByID(object id)
+        public virtual TEntity GetByID(object id, string includeProperties = "")
         {
-            return dbSet.Find(id);
+            IQueryable<TEntity> query = dbSet;
+
+            foreach (var includeProperty in includeProperties.Split
+                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
+            return query.FirstOrDefault(e => EF.Property<int>(e, "CountryId").Equals(id));
         }
 
         public virtual void Insert(TEntity entity)

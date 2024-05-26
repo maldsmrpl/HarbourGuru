@@ -1,0 +1,29 @@
+﻿@using HarbourGuru.MVC.ViewModel
+@model HarbourViewModel
+
+@{
+    ViewData["Title"] = "Harbours in " + Model.CountryName;
+}
+
+<br />
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Harbour Code</th>
+            <th scope="col">Harbour Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var harbour in Model.Harbours)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Harbour" asp-action="HarbourCards" asp-route-countryCodeA2="@Model.CountryCodeA2" asp-route-harbourCode="@harbour.HarbourCode">
+                        @harbour.HarbourCode
+                    </a>
+                </td>
+                <td>@harbour.HarbourName</td>
+            </tr>
+        }
+    </tbody>
+</table>

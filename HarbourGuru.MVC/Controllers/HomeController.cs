@@ -2,6 +2,7 @@ using HarbourGuru.MVC.Models;
 using HarbourGuru.MVC.Repository;
 using HarbourGuru.MVC.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace HarbourGuru.MVC.Controllers
@@ -17,23 +18,12 @@ namespace HarbourGuru.MVC.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        [HttpGet("")]
+        [Route("")]
         public IActionResult Index()
         {
-            if (_unitOfWork == null) 
-                return View("Error", "Unit of Work is not initialized.");
-
-            if (_unitOfWork.CountryRepository == null) 
-                return View("Error", "Country Repository is not initialized.");
-
             var countries = _unitOfWork.CountryRepository.Get();
-
-            if (countries == null)
-                return View("Error", "No countries found.");
-
             var sortedCountries = countries.OrderBy(c => c.CountryName).ToList();
-
-            if (!sortedCountries.Any())
-                return View("NoCountries");
 
             var countryVM = new CountryViewModel
             {
@@ -43,22 +33,87 @@ namespace HarbourGuru.MVC.Controllers
             return View(countryVM);
         }
 
-        [Route("privacy")]
-        public IActionResult Privacy()
+        [HttpGet("create")]
+        public IActionResult Create()
         {
             return View();
         }
 
-        [Route("about")]
-        public IActionResult About()
+        [HttpPost("create")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Country country)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.CountryRepository.Insert(country);
+                _unitOfWork.Save();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(country);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpGet("edit/{id}")]
+        public IActionResult Edit(int id)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var country = _unitOfWork.CountryRepository.GetByID(id);
+            if (country == null)
+            {
+                return NotFound();
+            }
+            return View(country);
+        }
+
+        [HttpPost("edit/{id}")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Country country)
+        {
+            if (id != country.CountryId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _unitOfWork.CountryRepository.Update(country);
+                    _unitOfWork.Save();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (_unitOfWork.CountryRepository.GetByID(id) == null)
+                    {
+                        return NotFound();
+                    }
+                    throw;
+                }
+                return RedirectToAction("Index", "Home");
+            }
+            return View(country);
+        }
+
+        [HttpGet("delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            var country = _unitOfWork.CountryRepository.GetByID(id);
+            if (country == null)
+            {
+                return NotFound();
+            }
+            return View(country);
+        }
+
+        [HttpPost("delete/{id}")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var country = _unitOfWork.CountryRepository.GetByID(id);
+            if (country != null)
+            {
+                _unitOfWork.CountryRepository.Delete(country);
+                _unitOfWork.Save();
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }

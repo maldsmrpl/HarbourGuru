@@ -1,0 +1,57 @@
+﻿@model HarbourGuru.MVC.Models.Country
+
+@{
+    ViewData["Title"] = "Delete Country";
+}
+
+<h1>Delete Country</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Country</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CountryName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CountryName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CountryCodeA2)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CountryCodeA2)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CountryCodeA3)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CountryCodeA3)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CountryFlagSmall)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CountryFlagSmall)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CountryFlagLarge)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CountryFlagLarge)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CountryFullName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CountryFullName)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CountryId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
