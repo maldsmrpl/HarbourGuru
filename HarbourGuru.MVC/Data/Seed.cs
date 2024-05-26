@@ -2,7 +2,7 @@
 
 namespace HarbourGuru.MVC.Data
 {
-    public class SeedRoles
+    public class Seed
     {
         public static async Task SeedRolesAsync(IApplicationBuilder applicationBuilder)
         {

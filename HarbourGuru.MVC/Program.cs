@@ -30,9 +30,9 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-if (args.Length == 1 && args[0].ToLower() == "seeddata")
+if (args.Length == 1 && args[0].ToLower() == "dotnet run ")
 {
-    await SeedRoles.SeedRolesAsync(app);
+    await Seed.SeedRolesAsync(app);
 }
 
 // Configure the HTTP request pipeline.
