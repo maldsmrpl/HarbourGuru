@@ -1,8 +1,31 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using HarbourGuru.MVC.ViewModel
+@model CountryViewModel
+
+@{
+    ViewData["Title"] = "Welcome";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<br />
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col"> </th>
+            <th scope="col">Country Name</th>
+            <th scope="col">Country Code (<i><small>ISO 3166-1 alpha-2</small></i>)</th>
+            <th scope="col">Country Code (<i><small>ISO 3166-1 alpha-3</small></i>)</th>
+            <th scope="col">Country Full Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var country in Model.Countries)
+        {
+            <tr>
+                <th scope="row"><img src="@country.CountryFlagSmall" alt="Flag" style="border: 1px solid grey; padding: 0px;" /></th>
+                <td>@country.CountryName</td>
+                <td>@country.CountryCodeA2</td>
+                <td>@country.CountryCodeA3</td>
+                <td>@country.CountryFullName</td>
+            </tr>
+        }
+    </tbody>
+</table>

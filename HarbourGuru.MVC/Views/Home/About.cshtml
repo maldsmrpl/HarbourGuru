@@ -1,0 +1,129 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+
+<br />
+
+<h2>Project Overview</h2>
+
+<h3>Introduction</h3>
+<p>HarbourGuru is a dynamic ASP.NET MVC web application crafted to meet the unique needs of seafarers by providing a platform for sharing and accessing essential information about port services. The maritime industry thrives on the seamless flow of information, and HarbourGuru bridges the gap by connecting seafarers with vital contacts and services in various ports around the world. Whether it's finding a reliable taxi driver, locating a seamen's mission, or contacting shipchandlers, HarbourGuru ensures that users have the information they need at their fingertips.</p>
+
+<h3>Purpose</h3>
+<p>The primary objective of HarbourGuru is to create a centralized, user-driven database of port-related contacts and services. This database aims to enhance the efficiency, safety, and convenience of port visits for seafarers. By leveraging the collective knowledge and experiences of its users, HarbourGuru facilitates informed decision-making, reduces the risk of encountering unreliable services, and ultimately improves the overall experience of seafaring professionals.</p>
+
+<h3>Key Features</h3>
+<ol>
+    <li>
+        <strong>User Authentication and Management</strong>:
+        <ul>
+            <li>Built using ASP.NET Core Identity, HarbourGuru provides secure user authentication and role-based authorization. Users can register, log in, and manage their profiles with ease, ensuring a personalized and secure experience.</li>
+        </ul>
+    </li>
+    <li>
+        <strong>Comprehensive Service Listings</strong>:
+        <ul>
+            <li>HarbourGuru allows users to add and browse detailed listings of various port services. Each listing, or "HarbourCard," includes crucial information such as the service name, description, contact details, and category.</li>
+        </ul>
+    </li>
+    <li>
+        <strong>Categorization and Organization</strong>:
+        <ul>
+            <li>Services are categorized into intuitive categories such as transportation, supplies, and welfare. This categorization aids in easy navigation and quick access to relevant information.</li>
+        </ul>
+    </li>
+    <li>
+        <strong>User Reviews and Ratings</strong>:
+        <ul>
+            <li>To maintain the quality and reliability of the information, users can leave reviews and ratings for the services they use. This feature enables other users to make informed choices based on peer feedback.</li>
+        </ul>
+    </li>
+    <li>
+        <strong>Global Coverage</strong>:
+        <ul>
+            <li>HarbourGuru supports an extensive database that covers ports from around the globe. Users can search for services in specific countries and harbours, making it a versatile tool for international seafarers.</li>
+        </ul>
+    </li>
+</ol>
+
+<h3>Data Model Architecture</h3>
+<p>HarbourGuru's data models are designed to capture a wide range of information related to ports and their services. Key models include:</p>
+<ul>
+    <li>
+        <strong>AppUser</strong>:
+        <ul>
+            <li>Extends <code>IdentityUser</code> to include timestamps for user activities and a collection of reviews written by the user.</li>
+        </ul>
+    </li>
+    <li>
+        <strong>Country</strong>:
+        <ul>
+            <li>Represents countries with attributes such as a unique identifier, country code, and country name, along with a collection of associated harbours.</li>
+        </ul>
+    </li>
+    <li>
+        <strong>Harbour</strong>:
+        <ul>
+            <li>Captures details about individual harbours, including harbour code, name, and a reference to the country it belongs to.</li>
+        </ul>
+    </li>
+    <li>
+        <strong>HarbourCard</strong>:
+        <ul>
+            <li>Stores information about specific services at a harbour, including service name, description, contact details, and associated reviews.</li>
+        </ul>
+    </li>
+    <li>
+        <strong>HarbourCardCategory</strong>:
+        <ul>
+            <li>Defines various categories for harbour services, ensuring organized and easy-to-navigate service listings.</li>
+        </ul>
+    </li>
+    <li>
+        <strong>HarbourCardPhone</strong>:
+        <ul>
+            <li>Manages contact phone numbers for services, including phone number details and descriptions.</li>
+        </ul>
+    </li>
+    <li>
+        <strong>HarbourCardReview</strong>:
+        <ul>
+            <li>Allows users to provide ratings and comments on services, which helps maintain the reliability and usefulness of the service listings.</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>User Experience</h3>
+<p>HarbourGuru is designed with a user-friendly interface that prioritizes ease of use and accessibility. Key user experience elements include:</p>
+<ul>
+    <li>
+        <strong>Intuitive Navigation</strong>:
+        <ul>
+            <li>Users can easily browse through categories, search for specific services, and filter results based on various criteria such as location and service type.</li>
+        </ul>
+    </li>
+    <li>
+        <strong>Detailed Service Information</strong>:
+        <ul>
+            <li>Each HarbourCard provides comprehensive details, ensuring users have all the necessary information to make informed decisions.</li>
+        </ul>
+    </li>
+    <li>
+        <strong>Interactive Review System</strong>:
+        <ul>
+            <li>The review and rating system is simple to use, encouraging users to share their experiences and help improve the community database.</li>
+        </ul>
+    </li>
+    <li>
+        <strong>Responsive Design</strong>:
+        <ul>
+            <li>HarbourGuru is optimized for various devices, ensuring a seamless experience whether accessed from a desktop, tablet, or smartphone.</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>Community and Collaboration</h3>
+<p>At its core, HarbourGuru thrives on the contributions of its users. The platform encourages seafarers to share their knowledge and experiences, creating a collaborative environment where valuable information is continuously updated and verified by the community. This collaborative approach not only enriches the database but also fosters a sense of camaraderie among seafarers worldwide.</p>
+
+<h3>Conclusion</h3>
+<p>HarbourGuru is more than just a web application; it is a vital resource for the global seafaring community. By providing a centralized platform for sharing and accessing port service information, HarbourGuru enhances the efficiency, safety, and convenience of maritime operations. Its robust features, user-friendly design, and community-driven approach make it an indispensable tool for seafarers navigating the complexities of international ports.</p>
