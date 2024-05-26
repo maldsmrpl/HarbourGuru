@@ -11,10 +11,11 @@ namespace HarbourGuru.MVC.Repository
         private GenericRepository<Country> countryRepository;
         private GenericRepository<Harbour> harbourRepository;
         private GenericRepository<HarbourCard> harbourCardRepository;
+        private GenericRepository<HarbourCardReview> harbourCardReviewRepository;
 
-        public UnitOfWork(DbContextOptions<ApplicationDbContext> options)
+        public UnitOfWork(ApplicationDbContext context)
         {
-            context = new ApplicationDbContext(options);
+            this.context = context;
         }
 
         public GenericRepository<Country> CountryRepository
@@ -42,7 +43,7 @@ namespace HarbourGuru.MVC.Repository
                 return harbourRepository;
             }
         }
-        public GenericRepository<HarbourCard>HarbourCardRepository
+        public GenericRepository<HarbourCard> HarbourCardRepository
         {
             get
             {
@@ -52,6 +53,19 @@ namespace HarbourGuru.MVC.Repository
                     this.harbourCardRepository = new GenericRepository<HarbourCard>(context);
                 }
                 return harbourCardRepository;
+            }
+        }
+
+        public GenericRepository<HarbourCardReview> HarbourCardReviewRepository
+        {
+            get
+            {
+
+                if (this.harbourCardReviewRepository == null)
+                {
+                    this.harbourCardReviewRepository = new GenericRepository<HarbourCardReview>(context);
+                }
+                return harbourCardReviewRepository;
             }
         }
 

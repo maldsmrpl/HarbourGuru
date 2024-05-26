@@ -1,5 +1,6 @@
 using HarbourGuru.MVC.Data;
 using HarbourGuru.MVC.Models;
+using HarbourGuru.MVC.Repository;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,8 @@ builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
+builder.Services.AddScoped<UnitOfWork>();
 
 builder.Services.AddControllersWithViews();
 
