@@ -1,0 +1,34 @@
+﻿@model HarbourGuru.MVC.ViewModel.HarbourCreateViewModel
+
+@{
+    ViewData["Title"] = "Create Harbour";
+}
+
+<h1>Create Harbour</h1>
+
+<h4>Harbour</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <input type="hidden" asp-for="CountryId" />
+            <div class="form-group">
+                <label asp-for="HarbourCode" class="control-label"></label>
+                <input asp-for="HarbourCode" class="form-control" />
+                <span asp-validation-for="HarbourCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HarbourName" class="control-label"></label>
+                <input asp-for="HarbourName" class="form-control" />
+                <span asp-validation-for="HarbourName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-countryCodeA2="@ViewBag.CountryCodeA2">Back to List</a>
+</div>

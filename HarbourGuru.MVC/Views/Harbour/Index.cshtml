@@ -1,9 +1,13 @@
 ﻿@using HarbourGuru.MVC.ViewModel
-@model HarbourViewModel
+@model HarbourIndexViewModel
 
 @{
     ViewData["Title"] = "Harbours in " + Model.CountryName;
 }
+
+<p>
+    <a asp-action="Create" asp-route-countryCodeA2="@Model.CountryCodeA2" class="btn btn-primary">Create New Harbour</a>
+</p>
 
 <br />
 <table class="table table-hover">
@@ -11,6 +15,7 @@
         <tr>
             <th scope="col">Harbour Code</th>
             <th scope="col">Harbour Name</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -23,6 +28,10 @@
                     </a>
                 </td>
                 <td>@harbour.HarbourName</td>
+                <td>
+                    <a asp-action="Edit" asp-route-countryCodeA2="@Model.CountryCodeA2" asp-route-harbourId="@harbour.HarbourId" class="btn btn-sm btn-warning">Edit</a> |
+                    <a asp-action="Delete" asp-route-countryCodeA2="@Model.CountryCodeA2" asp-route-harbourId="@harbour.HarbourId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
             </tr>
         }
     </tbody>

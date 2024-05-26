@@ -1,6 +1,9 @@
 ﻿using HarbourGuru.MVC.Data;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace HarbourGuru.MVC.Repository
 {
@@ -53,7 +56,20 @@ namespace HarbourGuru.MVC.Repository
                 query = query.Include(includeProperty);
             }
 
-            return query.FirstOrDefault(e => EF.Property<int>(e, "CountryId").Equals(id));
+            var keyProperty = GetKeyProperty();
+            if (keyProperty == null)
+            {
+                throw new InvalidOperationException($"No key property found for entity type {typeof(TEntity).Name}");
+            }
+
+            // Create a lambda expression dynamically
+            var parameter = Expression.Parameter(typeof(TEntity), "e");
+            var property = Expression.Property(parameter, keyProperty.Name);
+            var value = Expression.Constant(Convert.ChangeType(id, keyProperty.PropertyType));
+            var equals = Expression.Equal(property, value);
+            var lambda = Expression.Lambda<Func<TEntity, bool>>(equals, parameter);
+
+            return query.FirstOrDefault(lambda);
         }
 
         public virtual void Insert(TEntity entity)
@@ -80,6 +96,12 @@ namespace HarbourGuru.MVC.Repository
         {
             dbSet.Attach(entityToUpdate);
             context.Entry(entityToUpdate).State = EntityState.Modified;
+        }
+
+        private PropertyInfo GetKeyProperty()
+        {
+            var key = context.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey();
+            return key.Properties.Select(p => typeof(TEntity).GetProperty(p.Name)).FirstOrDefault();
         }
     }
 }

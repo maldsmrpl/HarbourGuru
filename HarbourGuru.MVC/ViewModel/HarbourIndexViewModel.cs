@@ -2,7 +2,7 @@
 
 namespace HarbourGuru.MVC.ViewModel
 {
-    public class HarbourViewModel
+    public class HarbourIndexViewModel
     {
         public int CountryId { get; set; }
         public string CountryName { get; set; }

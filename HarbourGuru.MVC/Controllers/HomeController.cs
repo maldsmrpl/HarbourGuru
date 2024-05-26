@@ -25,12 +25,24 @@ namespace HarbourGuru.MVC.Controllers
             var countries = _unitOfWork.CountryRepository.Get();
             var sortedCountries = countries.OrderBy(c => c.CountryName).ToList();
 
-            var countryVM = new CountryViewModel
+            var countryVM = new HomeIndexViewModel
             {
                 Countries = sortedCountries
             };
 
             return View(countryVM);
+        }
+
+        [Route("privacy")]
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [Route("about")]
+        public IActionResult About()
+        {
+            return View();
         }
 
         [HttpGet("create")]
