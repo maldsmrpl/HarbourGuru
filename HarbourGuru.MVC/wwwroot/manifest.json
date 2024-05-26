@@ -1,0 +1,29 @@
+{
+  "name": "Harbour Guru",
+  "short_name": "Harbour Guru",
+  "description": "Harbour Guru get and share",
+  "icons": [
+    {
+      "src": "icons/logo144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icons/logo168.png",
+      "sizes": "168x168",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "display": "standalone",
+  "start_url": "/"
+}
