@@ -62,7 +62,6 @@ namespace HarbourGuru.MVC.Repository
                 throw new InvalidOperationException($"No key property found for entity type {typeof(TEntity).Name}");
             }
 
-            // Create a lambda expression dynamically
             var parameter = Expression.Parameter(typeof(TEntity), "e");
             var property = Expression.Property(parameter, keyProperty.Name);
             var value = Expression.Constant(Convert.ChangeType(id, keyProperty.PropertyType));

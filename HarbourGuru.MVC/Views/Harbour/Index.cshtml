@@ -13,6 +13,7 @@
 <table class="table table-hover">
     <thead>
         <tr>
+            <th scope="col">Country Code</th>
             <th scope="col">Harbour Code</th>
             <th scope="col">Harbour Name</th>
             <th scope="col">Actions</th>
@@ -22,6 +23,11 @@
         @foreach (var harbour in Model.Harbours)
         {
             <tr>
+                <td>
+                    <a asp-controller="Harbour" asp-action="HarbourCards" asp-route-countryCodeA2="@Model.CountryCodeA2" asp-route-harbourCode="@harbour.HarbourCode">
+                        @harbour.Country.CountryCodeA2
+                    </a>
+                </td>
                 <td>
                     <a asp-controller="Harbour" asp-action="HarbourCards" asp-route-countryCodeA2="@Model.CountryCodeA2" asp-route-harbourCode="@harbour.HarbourCode">
                         @harbour.HarbourCode
