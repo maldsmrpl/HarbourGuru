@@ -1,6 +1,9 @@
 using HarbourGuru.MVC.Data;
+using HarbourGuru.MVC.Helpers;
+using HarbourGuru.MVC.Interfaces;
 using HarbourGuru.MVC.Models;
 using HarbourGuru.MVC.Repository;
+using HarbourGuru.MVC.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +11,12 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllersWithViews();
+builder.Services.AddProgressiveWebApp();
+
+builder.Services.AddScoped<IPhotoService, PhotoService>();
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -26,9 +35,6 @@ builder.Services.AddSession();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
 builder.Services.AddScoped<UnitOfWork>();
-
-builder.Services.AddControllersWithViews();
-builder.Services.AddProgressiveWebApp();
 
 var app = builder.Build();
 

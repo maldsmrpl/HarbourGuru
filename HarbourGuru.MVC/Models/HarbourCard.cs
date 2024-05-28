@@ -19,8 +19,11 @@ namespace HarbourGuru.MVC.Models
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
-        
-        [MaxLength(200)]
+
+        [Required]
+        public string? ImageUrl { get; set; }
+
+        [MaxLength(2000)]
         public string? Description { get; set; }
         
         public ICollection<HarbourCardPhone> Phones { get; set; } = new List<HarbourCardPhone>();

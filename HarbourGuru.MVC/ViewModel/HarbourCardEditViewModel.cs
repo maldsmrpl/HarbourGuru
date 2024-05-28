@@ -17,7 +17,7 @@ namespace HarbourGuru.MVC.ViewModel
         [MaxLength(50)]
         public string Name { get; set; }
 
-        [MaxLength(200)]
+        [MaxLength(2000)]
         public string? Description { get; set; }
 
         [MaxLength(50)]
@@ -31,5 +31,7 @@ namespace HarbourGuru.MVC.ViewModel
 
         public List<HarbourCardCategory> Categories { get; set; } = new List<HarbourCardCategory>();
         public List<HarbourCardPhoneViewModel> Phones { get; set; } = new List<HarbourCardPhoneViewModel>();
+        public IFormFile? Image { get; set; }
+        public string? ExistingImageUrl { get; set; }
     }
 }
