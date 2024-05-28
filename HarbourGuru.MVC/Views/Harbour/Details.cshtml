@@ -1,0 +1,64 @@
+﻿@model HarbourGuru.MVC.ViewModel.HarbourDetailsViewModel
+
+@{
+    ViewData["Title"] = "Harbour Details";
+}
+
+<h1>Harbour Details</h1>
+
+<div>
+    <h4>Harbour</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Country
+        </dt>
+        <dd class="col-sm-10">
+            @Model.CountryName
+        </dd>
+        <dt class="col-sm-2">
+            Harbour Code
+        </dt>
+        <dd class="col-sm-10">
+            @Model.HarbourCode
+        </dd>
+        <dt class="col-sm-2">
+            Harbour Name
+        </dt>
+        <dd class="col-sm-10">
+            @Model.HarbourName
+        </dd>
+    </dl>
+</div>
+
+<h3>Harbour Cards</h3>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Card Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var card in Model.HarbourCards)
+        {
+            <tr>
+                <td>@card.Name</td>
+                <td>@card.Description</td>
+                <td>
+                    <a asp-action="Edit" asp-controller="HarbourCard" asp-route-countryCodeA2="@Model.CountryCodeA2" asp-route-harbourCode="@Model.HarbourCode" asp-route-harbourCardId="@card.HarbourCardId" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-controller="HarbourCard" asp-route-countryCodeA2="@Model.CountryCodeA2" asp-route-harbourCode="@Model.HarbourCode" asp-route-harbourCardId="@card.HarbourCardId" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="Create" asp-controller="HarbourCard" asp-route-countryCodeA2="@Model.CountryCodeA2" asp-route-harbourCode="@Model.HarbourCode" class="btn btn-primary">Add HarbourCard</a>
+</p>
+
+<div>
+    <a asp-action="Index" asp-route-countryCodeA2="@Model.CountryCodeA2">Back to List</a>
+</div>

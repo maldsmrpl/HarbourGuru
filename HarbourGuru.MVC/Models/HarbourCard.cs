@@ -24,7 +24,9 @@ namespace HarbourGuru.MVC.Models
         public string? Description { get; set; }
         
         public ICollection<HarbourCardPhone> Phones { get; set; } = new List<HarbourCardPhone>();
-        
+        public string? Email { get; set; }
+        public string? Website { get; set; }
+
         [MaxLength(50)]
         public string? Address { get; set; }
         

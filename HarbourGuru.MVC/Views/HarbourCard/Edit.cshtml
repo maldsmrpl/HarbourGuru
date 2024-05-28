@@ -1,12 +1,12 @@
-﻿@model HarbourGuru.MVC.ViewModel.HarbourCardCreateViewModel
+﻿@model HarbourGuru.MVC.ViewModel.HarbourCardEditViewModel
 
 @{
-    ViewData["Title"] = "Create Harbour Card";
+    ViewData["Title"] = "Edit Harbour Card";
 }
 
-<h1>Create Harbour Card</h1>
+<h1>Edit Harbour Card</h1>
 
-<form asp-action="Create" method="post">
+<form asp-action="Edit" method="post">
     <div class="form-group">
         <label asp-for="Name" class="control-label"></label>
         <input asp-for="Name" class="form-control" />
@@ -38,26 +38,32 @@
         <span asp-validation-for="HarbourCardCategoryId" class="text-danger"></span>
     </div>
     <div id="phoneNumbers">
-        <div class="form-group phone-group">
-            <label>Phone Number</label>
-            <div class="input-group">
-                <input type="text" name="Phones[0].HarbourCardPhoneNumber" class="form-control phone-input" placeholder="Phone Number" />
-                <input type="text" name="Phones[0].HarbourCardPhoneDescription" class="form-control phone-description-input" placeholder="Description" />
-                <div class="input-group-append">
-                    <button type="button" class="btn btn-secondary add-phone-button" disabled>Add</button>
+        @for (int i = 0; i < Model.Phones.Count; i++)
+        {
+            <div class="form-group phone-group">
+                <label>Phone Number</label>
+                <div class="input-group">
+                    <input type="text" name="Phones[@i].HarbourCardPhoneNumber" class="form-control phone-input" value="@Model.Phones[i].HarbourCardPhoneNumber" placeholder="Phone Number" />
+                    <input type="text" name="Phones[@i].HarbourCardPhoneDescription" class="form-control phone-description-input" value="@Model.Phones[i].HarbourCardPhoneDescription" placeholder="Description" />
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary @((i == Model.Phones.Count - 1) ? "add-phone-button" : "remove-phone-button")" @(i == Model.Phones.Count - 1 ? "disabled" : "")>
+                            @((i == Model.Phones.Count - 1) ? "Add" : "Remove")
+                        </button>
+                    </div>
                 </div>
+                <span class="text-danger"></span>
             </div>
-            <span class="text-danger"></span>
-        </div>
+        }
     </div>
+    <input type="hidden" asp-for="HarbourCardId" />
     <input type="hidden" asp-for="HarbourId" />
     <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
+        <input type="submit" value="Save" class="btn btn-primary" />
     </div>
 </form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Details" asp-controller="Harbour" asp-route-countryCodeA2="@ViewData["countryCodeA2"]" asp-route-harbourCode="@ViewData["harbourCode"]">Back to List</a>
 </div>
 
 @section Scripts {

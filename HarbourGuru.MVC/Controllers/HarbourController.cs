@@ -3,6 +3,7 @@ using HarbourGuru.MVC.Repository;
 using HarbourGuru.MVC.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace HarbourGuru.MVC.Controllers
 {
@@ -174,32 +175,29 @@ namespace HarbourGuru.MVC.Controllers
         }
 
         [HttpGet("{harbourCode}")]
-        public IActionResult HarbourCards(string countryCodeA2, string harbourCode)
+        public IActionResult Details(string countryCodeA2, string harbourCode)
         {
-            var country = _unitOfWork.CountryRepository.Get(
-                c => c.CountryCodeA2 == countryCodeA2,
-                includeProperties: "Harbours.HarbourCards"
+            var harbour = _unitOfWork.HarbourRepository.Get(
+                h => h.HarbourCode == harbourCode && h.Country.CountryCodeA2 == countryCodeA2,
+                includeProperties: "Country,HarbourCards"
             ).FirstOrDefault();
 
-            if (country == null)
-            {
-                return NotFound();
-            }
-
-            var harbour = country.Harbours.FirstOrDefault(h => h.HarbourCode == harbourCode);
             if (harbour == null)
             {
                 return NotFound();
             }
 
-            var harbourCardsVM = new HarbourCardViewModel
+            var harbourDetailsVM = new HarbourDetailsViewModel
             {
                 HarbourId = harbour.HarbourId,
+                HarbourCode = harbour.HarbourCode,
                 HarbourName = harbour.HarbourName,
+                CountryName = harbour.Country.CountryName,
+                CountryCodeA2 = harbour.Country.CountryCodeA2,
                 HarbourCards = harbour.HarbourCards.ToList()
             };
 
-            return View(harbourCardsVM);
+            return View(harbourDetailsVM);
         }
     }
 }

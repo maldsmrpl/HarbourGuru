@@ -1,0 +1,50 @@
+﻿@model HarbourGuru.MVC.ViewModel.HarbourCardIndexViewModel
+
+@{
+    ViewData["Title"] = "Harbour Card Details";
+}
+
+<h1>Harbour Card Details</h1>
+
+<div>
+    <h4>HarbourCard</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Name
+        </dt>
+        <dd class="col-sm-10">
+            @Model.HarbourCard.Name
+        </dd>
+        <dt class="col-sm-2">
+            Description
+        </dt>
+        <dd class="col-sm-10">
+            @Model.HarbourCard.Description
+        </dd>
+        <dt class="col-sm-2">
+            Address
+        </dt>
+        <dd class="col-sm-10">
+            @Model.HarbourCard.Address
+        </dd>
+        <dt class="col-sm-2">
+            Harbour
+        </dt>
+        <dd class="col-sm-10">
+            @Model.HarbourCard.Harbour.HarbourName
+        </dd>
+        <dt class="col-sm-2">
+            Category
+        </dt>
+        <dd class="col-sm-10">
+            @Model.HarbourCard.HarbourCardCategory.HarbourCardCategoryName
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit">Edit</a> |
+    <a asp-action="Index" asp-controller="Harbour" asp-route-countryCodeA2="@Model.HarbourCard.Harbour.Country.CountryCodeA2" asp-route-harbourCode="@Model.HarbourCard.Harbour.HarbourCode">Back to List</a> |
+    <a asp-action="Delete">Delete</a>
+</div>
