@@ -88,7 +88,6 @@ namespace HarbourGuru.MVC.Controllers
                 return RedirectToAction("Details", "Harbour", new { countryCodeA2, harbourCode });
             }
 
-            // Repopulate the Categories list
             harbourCardVM.Categories = _unitOfWork.HarbourCardCategoryRepository.Get().ToList();
 
             return View(harbourCardVM);

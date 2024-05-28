@@ -23,18 +23,18 @@
         @foreach (var harbour in Model.Harbours)
         {
             <tr>
-                <td>
+                <td class ="align-middle">
                     <a asp-controller="Harbour" asp-action="Details" asp-route-countryCodeA2="@Model.CountryCodeA2" asp-route-harbourCode="@harbour.HarbourCode">
                         @harbour.Country.CountryCodeA2
                     </a>
                 </td>
-                <td>
+                <td class="align-middle">
                     <a asp-controller="Harbour" asp-action="Details" asp-route-countryCodeA2="@Model.CountryCodeA2" asp-route-harbourCode="@harbour.HarbourCode">
                         @harbour.HarbourCode
                     </a>
                 </td>
-                <td>@harbour.HarbourName</td>
-                <td>
+                <td class="align-middle">@harbour.HarbourName</td>
+                <td class="align-middle">
                     <a asp-action="Edit" asp-route-countryCodeA2="@Model.CountryCodeA2" asp-route-harbourId="@harbour.HarbourId" class="btn btn-sm btn-warning">Edit</a> |
                     <a asp-action="Delete" asp-route-countryCodeA2="@Model.CountryCodeA2" asp-route-harbourId="@harbour.HarbourId" class="btn btn-sm btn-danger">Delete</a>
                 </td>

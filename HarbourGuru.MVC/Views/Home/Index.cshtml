@@ -24,15 +24,15 @@
         @foreach (var country in Model.Countries)
         {
             <tr>
-                <th scope="row"><img src="@country.CountryFlagSmall" alt="Flag" style="border: 1px solid grey; padding: 0px;" /></th>
-                <td>
+                <th scope="row" class="align-middle"><img src="@country.CountryFlagSmall" alt="Flag" style="border: 1px solid grey; padding: 0px;" /></th>
+                <td class="align-middle">
                     <a asp-controller="Harbour" asp-action="Index" asp-route-countryCodeA2="@country.CountryCodeA2">
                         @country.CountryName
                     </a>
                 </td>
-                <td>@country.CountryCodeA2</td>
-                <td>@country.CountryFullName</td>
-                <td>
+                <td class="align-middle">@country.CountryCodeA2</td>
+                <td class="align-middle">@country.CountryFullName</td>
+                <td class="align-middle">
                     <a asp-action="Edit" asp-route-id="@country.CountryId" class="btn btn-sm btn-warning">
                         E
                     </a> |

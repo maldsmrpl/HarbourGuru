@@ -179,7 +179,7 @@ namespace HarbourGuru.MVC.Controllers
         {
             var harbour = _unitOfWork.HarbourRepository.Get(
                 h => h.HarbourCode == harbourCode && h.Country.CountryCodeA2 == countryCodeA2,
-                includeProperties: "Country,HarbourCards"
+                includeProperties: "Country,HarbourCards,HarbourCards.HarbourCardCategory"
             ).FirstOrDefault();
 
             if (harbour == null)

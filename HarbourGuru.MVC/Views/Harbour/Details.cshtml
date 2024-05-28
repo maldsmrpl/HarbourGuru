@@ -4,6 +4,12 @@
     ViewData["Title"] = "Harbour Details";
 }
 
+<style>
+    .align-middle {
+        vertical-align: middle !important;
+    }
+</style>
+
 <h1>Harbour Details</h1>
 
 <div>
@@ -35,18 +41,22 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="col">Card Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Actions</th>
+            <th scope="col"> </th>
+            <th scope="col">Name</th>
+            <th scope="col">Category</th>
+            <th scope="col"> </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var card in Model.HarbourCards)
         {
             <tr>
-                <td>@card.Name</td>
-                <td>@card.Description</td>
-                <td>
+                <td class="align-middle">
+                    <img src="@card.ImageUrl" alt="@card.Name" style="max-width: 64px; max-height: 64px;" />
+                </td>
+                <td class="align-middle">@card.Name</td>
+                <td class="align-middle">@card.HarbourCardCategory.HarbourCardCategoryName</td>
+                <td class="align-middle">
                     <a asp-action="Edit" asp-controller="HarbourCard" asp-route-countryCodeA2="@Model.CountryCodeA2" asp-route-harbourCode="@Model.HarbourCode" asp-route-harbourCardId="@card.HarbourCardId" class="btn btn-warning btn-sm">Edit</a>
                     <a asp-action="Delete" asp-controller="HarbourCard" asp-route-countryCodeA2="@Model.CountryCodeA2" asp-route-harbourCode="@Model.HarbourCode" asp-route-harbourCardId="@card.HarbourCardId" class="btn btn-danger btn-sm">Delete</a>
                 </td>
